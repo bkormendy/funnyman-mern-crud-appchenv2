@@ -10,6 +10,11 @@ describe("app", function() {
         testApp.post('hi world')
     })
 
+    it("getAll returns all messages", function() {
+        expect(testApp.getAll()).to.be.an('array');
+        expect(testApp.getAll().length).to.equal(1);
+    })
+
     it("app has messages", function() {
     expect(testApp.messages).to.be.an('array')
     })
@@ -66,7 +71,7 @@ describe("app", function() {
 
     it("app reads from given filepath", function() {
         let testFileApp = new MessageApp("/\///json/\//testMessages.json")
-            expect(testFileApp.messages.length).to.equal(0)
+        expect(testFileApp.messages.length).to.equal(0)
     })
 
     it("writes to given filepath", function() {
@@ -76,9 +81,28 @@ describe("app", function() {
         expect(testFileWriteApp.messages.length).to.equal(1)
         let testFileReadApp = new MessageApp("/\///json/\//testMessages.json")
         expect(testFileReadApp.messages.length).to.equal(1)
-        testFileReadApp.delete(1)
         let testFileClearedApp = new MessageApp("/\///json/\//testMessages.json")
+        testFileClearedApp.delete(1)
         expect(testFileClearedApp.messages.length).to.equal(0)
     })
 
+    it("rejects empty messages", function() {
+        let testApp = new MessageApp()
+        expect(testApp.post('')).to.deep.equal([])
+    })
+
+    it("no messages if no messages are sent", function() {
+        let testApp = new MessageApp()
+        expect(testApp.getAll()).to.deep.equal([])
+    })
+
+    it("rejects false update", function() {
+        let testApp = new MessageApp()
+        expect(testApp.update(0, "")).to.deep.equal([])
+    })
+
+    it("errors if no message to delete", function() {
+        let testApp = new MessageApp()
+        expect(testApp.delete(0)).to.deep.equal('Message not found in database')
+    })
 })
