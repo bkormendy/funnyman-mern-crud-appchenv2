@@ -1,11 +1,20 @@
+function newId(array){
+    if (array.length > 0) {
+        return array[array.length-1].id + 1;
+    } else {
+        return 1
+    }
+}
+
 class MessageApp {
     constructor() {
         this.messages = []
     }
 
+    //Create (post)
     post(content) {
         let item = {
-            id: this.messages.length,
+            id: newId(this.messages),
             content: content,
             date: new Date()
         }
@@ -15,13 +24,19 @@ class MessageApp {
 
     //Read
     get(id) {
-        return this.messages[id]
+        return this.messages.filter(message => message.id === id) [0]
     }
 
     //Update
-    update(id, content) {
-        this.messages[id].content = content
-        return this.messages[id]
+    update(id, update) {
+        let index = this.messages.findIndex(message => message.id === id )
+        this.messages[index].content = update
+    }
+
+    //Delete
+    delete(id){
+        this.messages = this.messages.filter(message => message.id != id)
+        return this.messages
     }
 }
 
