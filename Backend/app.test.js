@@ -25,4 +25,8 @@ describe("app", function() {
         expect(testApp.messages[0].id).to.equal(0)
     })
 
+    it("app reads (get)", function() {
+        expect(testApp.get(0).content).to.equal("hi world")
+    })
+
 })

@@ -12,7 +12,11 @@ class MessageApp {
         this.messages.push(item)
         return this.messages
     }
-    
+
+    //Read
+    get(id) {
+        return this.messages[id]
+    }
 }
 
 export default MessageApp
