@@ -105,4 +105,6 @@ describe("app", function() {
         let testApp = new MessageApp()
         expect(testApp.delete(0)).to.deep.equal('Message not found in database')
     })
+
+    //end of phase one
 })
