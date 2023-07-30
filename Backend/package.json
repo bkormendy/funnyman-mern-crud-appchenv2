@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r esm app.test.js",
-    "start": "node -r esm app.js"
+    "test": "mocha -r esm ./test/* --exit",
+    "start": "node -r esm model.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
   "dependencies": {
     "chai": "^4.3.7",
     "esm": "^3.2.25",
+    "express": "^4.18.2",
     "mocha": "^10.2.0"
   }
 }
