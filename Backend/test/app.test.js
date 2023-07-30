@@ -1,16 +1,19 @@
 //app.test.js
 import request from "supertest"
 import { expect } from "chai"
-import MessageApp from "../lib/model.js"
-import app from "../app.mjs"
+import MessageApp from "../app.mjs"
 
-
-describe("Hello World test", function(){
-    it("first test", function(done) {
-        /* const res = request(new MessageApp) */
-        const res = request(app)
+describe("message API endpoint tests", function(){
+    it.only("gets all messages", function(done) {
+        const res = request(MessageApp)
         .get("/")
-        res.expect({val: "Hello World"})
-        res.expect(200, done)
-    })
+        res.expect(200)
+        .end(function(err, res) {
+          if (err) {
+            return done(err)
+          }
+          expect(res.body.length).to.equal(1)
+          done()
+        })
+      })
 })

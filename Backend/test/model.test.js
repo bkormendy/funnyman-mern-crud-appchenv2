@@ -1,4 +1,5 @@
 // app.test.js
+//TODO: add nyc or other test coverage to app
 import { expect } from "chai"
 import MessageApp from '../lib/model.js'
 
