@@ -1,5 +1,6 @@
 // app.test.js
 //TODO: add nyc or other test coverage to app
+//TODO: gotta fix these test/prod NODE_ENV-s, because currently they dont update
 import { expect } from "chai"
 import MessageApp from '../lib/model.js'
 

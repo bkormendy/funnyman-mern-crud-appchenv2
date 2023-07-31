@@ -59,17 +59,17 @@ class MessageApp {
     }
 
     //Delete
-    delete(id){
-        let index = this.messages.findIndex(message => message.id === id)
+    delete(id) {
+        let index = this.messages.findIndex(message => message.id == id )
         if (index >= 0) {
-            this.messages.splice(index, 1);
-            this.writeToJson()
-            return this.messages
+          this.messages = this.messages.filter(message => message.id != id)
+          this.writeToJson()
+          return this.messages
         }
         else {
-            return "Message not found in database"
+          return "Message not found in database"
         }
-    }
+      }
 
     readFromJson() {
         return JSON.parse(fs.readFileSync(

@@ -31,8 +31,20 @@ function post(content){
     })
 }
 
+function deleteMessage(id){
+    return new Promise((resolve, reject) => {
+      let result = messageApp.delete(id)
+      if (result !== 'Message not found in database') {
+        resolve(result)
+      } else {
+        reject(result)
+      }
+    })
+}
+
 export default {
   getAll,
   post,
+  deleteMessage,
   messageApp,
 }
