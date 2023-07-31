@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r esm ./test/* --exit",
+    "test": "mocha -r esm ./test/model.test.js -exit",
+    "APItest": "mocha -r esm ./test/app.test.js -exit",
     "start": "node -r esm app.mjs"
   },
   "keywords": [],
