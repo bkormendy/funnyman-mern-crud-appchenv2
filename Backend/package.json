@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r esm ./test/model.test.js -exit",
-    "APItest": "mocha -r esm ./test/app.test.js -exit",
+    "test": "cross-env NODE_ENV=test mocha -r esm ./test/model.test.js -exit",
+    "APItest": "cross-env NODE_ENV=test mocha -r esm ./test/app.test.js -exit",
     "start": "node -r esm app.mjs"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
     "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nyc": "^15.1.0"
   }
 }
