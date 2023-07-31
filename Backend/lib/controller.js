@@ -1,7 +1,13 @@
 //controller.js
 import MessageApp from './model.js'
 
-let messageApp = new MessageApp(`/\///json/\//testMessages.json`)
+let messageApp;
+
+if (process.env.npm_lifecycle_event == "test") {
+    messageApp = new MessageApp(`/\///json/\//testMessages.json`)
+    } else {
+      messageApp = new MessageApp(`/\///json/\//messages.json`)
+    }
 
 function getAll(){
   return new Promise((resolve, reject) => {
@@ -13,7 +19,20 @@ function getAll(){
     }
   })
 }
+
+function post(content){
+    return new Promise((resolve, reject) => {
+      let message = messageApp.post(content)
+      if (message !== []) {
+        resolve(message)
+      } else {
+        reject(message)
+      }
+    })
+}
+
 export default {
   getAll,
-  messageApp
+  post,
+  messageApp,
 }
