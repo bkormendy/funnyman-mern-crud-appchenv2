@@ -1,27 +1,15 @@
-//app.mjs
-import express from 'express'
-import MessageApp from './lib/model.js'
+//app.js
+import express from "express"
+import router from "./lib/routes.js"
 
 const app = express()
 
-//hardcoded instance of message app test database vv
-let messageApp = new MessageApp("/\///json/\//testMessages.json")
-
-if (process.env.npm_lifecycle_event == "test") {
-   messageApp = new MessageApp(`/\///json/\//testMessages.json`)
-   } else {
-      messageApp = new MessageApp(`/\///json/\//messages.json`)
-   }
-
-app.get('/', async (req, res) => {
-   return new Promise((resolve, reject) => {
-     let result = messageApp.getAll()
-       res.json(result)
-   })
- })
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}))
+app.use(router)
 
 app.listen(3001, function(){
-   console.log("Connected")
- })
+  console.log("Connected");
+})
 
-export default app
+export default app;
